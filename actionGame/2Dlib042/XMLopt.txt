@@ -1,0 +1,33 @@
+
+
+
+template <class Type>
+/// <summary>
+/// String•¶š—ñ‚ğƒT„‚É•ÏŠ·‚µ‚Ä‘ã“ü‚·‚éB‚Å‚«‚È‚¢ê‡‚Í‰½‚à‚µ‚È‚¢B
+/// </summary>
+/// <typeparam name="Type">Œ^</typeparam>
+/// <param name="str">•ÏŠ·‚·‚é•¶š—ñ</param>
+/// <param name="value">‘ã“ü‚·‚é•Ï”</param>
+/// <returns>•ÏŠ·‚Å‚«‚é‚Æ true</returns>
+bool TryParse(StringView str, Type& value)
+{
+	if (auto opt = ParseOpt<Type>(str))
+	{
+		value = opt.value();
+		return true;
+	}
+	return false;
+}
+
+		// XMLElement& element
+		auto TrySetElementIntValue = [&](String name,int &value)
+		{
+			bool parse = TryParse<int>(element.attribute(name).value(), value);
+			_ASSERT_EXPR(parse, L"int•ÏŠ·‚Å‚«‚È‚¢•¶š—ñ‚Å‚·B ");
+		};
+		auto TrySetStringValue = [&](String name,String &value)
+		{
+			auto elementAttr = element.attribute(name);
+			if(elementAttr.has_value())
+					value = elementAttr.value();
+		};
